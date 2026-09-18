@@ -1,0 +1,10 @@
+# Build
+bin/
+obj/
+PublishSelfContained/
+Setup/
+*.exe
+*.msi
+
+# User secrets
+appsettings.local.json
