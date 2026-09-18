@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.JavakEntryPage" Title="Javak Full" BackgroundColor="#FAFAFA">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="12">
+            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="16">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0">
+                        <Label Text="📤 Javak Entry - Full Details" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="New Entry Click Karo To Form Khulse - Baki Hide Rahese" FontSize="11" TextColor="#AAAAAA" />
+                    </VerticalStackLayout>
+                    <Border Grid.Column="1" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,8">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnNewJavakClicked" />
+                        </Border.GestureRecognizers>
+                        <Label Text="+ New Javak" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- New Javak Entry Button - Click Karo To Pending List Dekhashe - Form Hide Rahese -->
+            <Border x:Name="NewJavakButtonBorder" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="16">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNewJavakClicked" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="➕ New Javak Entry - Pending List Maathi Party Select Karo - Form Khulse" FontSize="14" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="+" FontSize="20" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 16" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📦 Pending Stock - Select Karo - Konu Mal Javak Karvu Che" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                    <Label Text="Party par Click Karo To Entry Khulse - Baki Hide Rahese - Edit Ma Badhi Detail Auto Aavse" FontSize="10" TextColor="#888888" />
+                    <CollectionView x:Name="PendingCollection" HeightRequest="350" SelectionMode="Single" SelectionChanged="OnPendingSelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="#FFF7ED" Stroke="#FFCC99" StrokeShape="RoundRectangle 10" Padding="12" Margin="0,4">
+                                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding PartyName}" FontAttributes="Bold" FontSize="13" TextColor="#0A0A0A" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding BillNo}" FontSize="10" TextColor="#FF6B00" FontAttributes="Bold" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding ItemName}" FontSize="11" TextColor="#666666" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding PendingBags, StringFormat='{0} Bags Baki / Pending'}" FontSize="11" FontAttributes="Bold" TextColor="#FF6B00" />
+                                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding VehicleNo, StringFormat='Aavak Vehicle: {0}'}" FontSize="10" TextColor="#888888" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="JavakForm" BackgroundColor="White" Stroke="#10B981" StrokeShape="RoundRectangle 16" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="📝 Javak Entry Form - Aavak Jevu J" FontSize="14" FontAttributes="Bold" TextColor="#0A0A0A" />
+                        <Border Grid.Column="1" BackgroundColor="#FFE5E5" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="8,4">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCancelClicked" />
+                            </Border.GestureRecognizers>
+                            <Label Text="✕ Hide" FontSize="11" TextColor="#FF3B30" FontAttributes="Bold" />
+                        </Border>
+                    </Grid>
+
+                    <Label Text="📅 Javak Date &amp; Bill Details (Javak Tarikh &amp; Bill)" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Javak Date * (Javak Tarikh) 📅" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <DatePicker x:Name="JavakDatePicker" BackgroundColor="#FAFAFA" TextColor="#0A0A0A" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Bill No * (Bill Number) 🧾" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="BillNoEntry" Placeholder="B001" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Label Text="👤 Party &amp; Product Details (Party &amp; Product) - Auto" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                    <VerticalStackLayout>
+                        <Label Text="Party Name * (Party Naam) - Konu maal jay che" FontSize="11" TextColor="#666666" />
+                        <Entry x:Name="PartyNameEntry" Placeholder="Party Name Auto" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="📦 Product Name * (Product Naam) - Shu product" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="ItemNameEntry" Placeholder="Mirchi" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="🔧 Jobwork Type * (Shu jobwork karyu)" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="JobworkTypeEntry" Placeholder="Grinding" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Label Text="⚖ Bags &amp; Weight Details (Bags &amp; Vajan Vigat) - Aavak Jevu J" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="🔢 Delivered Bags * (Moklel Bags) - Ketal moklya" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="DeliveredBagsEntry" Placeholder="25" Keyboard="Numeric" BackgroundColor="#FFF7ED" TextColor="#0A0A0A" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="⚖ Bag Weight (Bag Vajan) - Ek bag ketla KG" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="BagWeightEntry" Placeholder="40 KG Per Bag" Keyboard="Numeric" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2">
+                            <Label Text="Total Weight (Kul Vajan) - Auto" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="TotalWeightEntry" Placeholder="1000 KG" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="🚚 Vehicle Weight (Gaadi Vajan / Kanta Vajan) - Truck kanta weight" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="VehicleWeightEntry" Placeholder="Truck weight" Keyboard="Numeric" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="❌ Kharabo (Kharabo ketlo)" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="KharaboEntry" Placeholder="20 KG" Keyboard="Numeric" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2">
+                            <Label Text="✅ Net Weight (Net Vajan)" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="NetWeightEntry" Placeholder="980 KG Net" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" FontAttributes="Bold" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Label Text="🚚 Vehicle &amp; Rate Details (Gaadi &amp; Rate)" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="🚚 Javak Vehicle No * (Javak Gaadi Number Kya nakhvano) - Javak ma kaya gaadi ma maal moklyo" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="JavakVehicleEntry" Placeholder="GJ03 XY 1234 - Javak Gaadi Number Kya Nakhvano" BackgroundColor="#FFF7ED" TextColor="#0A0A0A" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="💰 Jobwork Rate * (Jobwork Rate) - Per KG Rate" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="RateEntry" Placeholder="50 Rs/KG" Keyboard="Numeric" BackgroundColor="#E8F5E8" TextColor="#0A0A0A" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="💰 Total Amount (Kul Rakam)" FontSize="11" TextColor="#666666" FontAttributes="Bold" />
+                            <Entry x:Name="AmountEntry" Placeholder="Rs 49000" BackgroundColor="#E8F5E8" TextColor="#10B981" FontAttributes="Bold" IsReadOnly="True" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="📱 Party Mobile for WhatsApp (WhatsApp mate mobile)" FontSize="11" TextColor="#666666" />
+                            <Entry x:Name="PartyMobileEntry" Placeholder="9876543210 - WhatsApp Mobile" Keyboard="Telephone" BackgroundColor="#FAFAFA" TextColor="#0A0A0A" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Border BackgroundColor="#F0FDF4" Stroke="#BBF7D0" StrokeShape="RoundRectangle 10" Padding="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="💰 Auto Bill + Baki Stock + WhatsApp Preview!" FontSize="12" FontAttributes="Bold" TextColor="#10B981" />
+                            <Label x:Name="AutoBillLabel" Text="Bill Amount: Rs 0" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label x:Name="CalculationLabel" Text="Calculation Auto - Aavak Jevu J" FontSize="10" TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button Grid.Column="0" Text="✅ Javak + Bill + WhatsApp + PDF" BackgroundColor="#10B981" TextColor="White" CornerRadius="10" HeightRequest="50" Clicked="OnJavakSaveClicked" />
+                        <Button Grid.Column="1" Text="Cancel / Hide" BackgroundColor="#F0F0F0" TextColor="#0A0A0A" CornerRadius="10" Clicked="OnCancelClicked" />
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

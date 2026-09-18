@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.BillPage" Title="Bill" BackgroundColor="#F8F8F7" Shell.NavBarIsVisible="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- HEADER - COMPANY -->
+        <Border Grid.Row="0" BackgroundColor="#0A0A0A" StrokeThickness="0" Padding="14,10">
+            <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                    <Border BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="44" HeightRequest="44" VerticalOptions="Center">
+                        <Grid>
+                            <Image x:Name="LogoImage" Aspect="AspectFill" IsVisible="False"/>
+                            <Label x:Name="LogoText" Text="AR" FontAttributes="Bold" TextColor="#FF6B00" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="1" Margin="10,0" VerticalOptions="Center">
+                        <Label x:Name="CompanyNameLabel" Text="AR SOFTWARE" FontSize="13" FontAttributes="Bold" TextColor="White"/>
+                        <Label x:Name="CompanyAddressLabel" Text="Bhavnagar, Gujarat" FontSize="9" TextColor="#AAAAAA"/>
+                        <Label x:Name="CompanyMobileLabel" Text="📞 6005951768 | GST" FontSize="9" TextColor="#FF6B00" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                    <Border Grid.Column="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="10,6" VerticalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBillSettingsClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="⚙ Bill Setting" FontSize="9" FontAttributes="Bold" TextColor="White"/>
+                    </Border>
+                </Grid>
+                <!-- BILL TYPE - દૂર દૂર -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16">
+                    <Border x:Name="JobworkBorder" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="10,8">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBillTypeClicked" CommandParameter="Jobwork"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="📦 Jobwork" FontSize="10" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                    </Border>
+                    <Border x:Name="GstBorder" Grid.Column="1" BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="10,8">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBillTypeClicked" CommandParameter="GST"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="🧾 GST Bill" FontSize="10" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                    </Border>
+                    <Border x:Name="RegularBorder" Grid.Column="2" BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="10,8">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBillTypeClicked" CommandParameter="Regular"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="💰 Regular" FontSize="10" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="12" Spacing="16">
+                <!-- BILL INFO -->
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 14" Padding="12">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="16">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="Bill No" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="BillNoEntry" Placeholder="BILL-101" TextColor="Black" FontSize="12" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="3">
+                            <Label Text="Date" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <DatePicker x:Name="BillDatePicker" TextColor="Black" FontSize="12" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Spacing="3">
+                            <Label Text="Party Name" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <Entry x:Name="PartyEntry" Placeholder="Select Party - Bhavnagar" TextColor="Black" FontSize="12" BackgroundColor="#FAFAFA"/>
+                                <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="36" HeightRequest="36" VerticalOptions="Center">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSelectPartyClicked"/>
+                                    </Border.GestureRecognizers>
+                                    <Label Text="👥" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" x:Name="PartyDetailLabel" Text="Mobile | City" FontSize="10" TextColor="Black" IsVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <!-- ITEMS -->
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 14" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                            <Label Text="📋 Bill Items" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                            <Border Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="12,6">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAddItemClicked"/>
+                                </Border.GestureRecognizers>
+                                <Label Text="+ Add Item" FontSize="10" FontAttributes="Bold" TextColor="White"/>
+                            </Border>
+                        </Grid>
+                        <CollectionView x:Name="BillItemsCollection" HeightRequest="200">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#FAFAFA" Stroke="#00000006" StrokeShape="RoundRectangle 10" Padding="10" Margin="0,4">
+                                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                                            <VerticalStackLayout Spacing="1">
+                                                <Label Text="{Binding ItemName}" FontSize="11" FontAttributes="Bold" TextColor="Black"/>
+                                                <Label Text="{Binding Qty, StringFormat='{0} Bags x Rs {1}'}" FontSize="9" TextColor="Black"/>
+                                            </VerticalStackLayout>
+                                            <Label Grid.Column="1" Text="{Binding Amount, StringFormat='Rs {0:N0}'}" FontSize="11" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                                            <Border Grid.Column="2" BackgroundColor="#FFE0E0" StrokeThickness="0" StrokeShape="RoundRectangle 6" WidthRequest="24" HeightRequest="24">
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnRemoveItemClicked" CommandParameter="{Binding .}"/>
+                                                </Border.GestureRecognizers>
+                                                <Label Text="✕" FontSize="10" TextColor="#D00000" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- TOTAL + GST -->
+                <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="14">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                            <Label Text="Sub Total" FontSize="11" TextColor="#AAAAAA"/>
+                            <Label x:Name="SubTotalLabel" Grid.Column="1" Text="Rs 0" FontSize="11" FontAttributes="Bold" TextColor="White"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto" x:Name="GstGrid" ColumnSpacing="16">
+                            <Label Text="GST (18%)" FontSize="11" TextColor="#AAAAAA"/>
+                            <Label x:Name="GstLabel" Grid.Column="1" Text="Rs 0" FontSize="11" FontAttributes="Bold" TextColor="#FF6B00"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" Color="#1A1A1A"/>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                            <Label Text="Grand Total" FontSize="13" FontAttributes="Bold" TextColor="White"/>
+                            <Label x:Name="GrandTotalLabel" Grid.Column="1" Text="Rs 0" FontSize="14" FontAttributes="Bold" TextColor="#FF6B00"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ✅ BANK + UPI QR + TERMS - BILL માં આવશે - બધા Text Black -->
+                <Border BackgroundColor="White" Stroke="#003F5C" StrokeThickness="0.8" StrokeShape="RoundRectangle 14" Padding="12">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="🏦 Bank Detail" FontSize="11" FontAttributes="Bold" TextColor="Black"/>
+                            <Label x:Name="BillBankLabel" Text="Bank: SBI" FontSize="10" TextColor="Black"/>
+                            <Label x:Name="BillAccountLabel" Text="A/C: 123456789" FontSize="10" TextColor="Black"/>
+                            <Label x:Name="BillIfscLabel" Text="IFSC: SBIN012345" FontSize="10" TextColor="Black"/>
+                            <Label x:Name="BillUpiLabel" Text="UPI: 9876543210@paytm" FontSize="10" TextColor="Black" FontAttributes="Bold"/>
+                            <BoxView HeightRequest="1" Color="#F0F0F0" Margin="0,4"/>
+                            <Label Text="Terms &amp; Conditions:" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Label x:Name="BillTermsLabel" Text="1. Payment Due in 7 Days" FontSize="9" TextColor="Black"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6" HorizontalOptions="Center">
+                            <Border BackgroundColor="#FAFAFA" Stroke="#E0E0E0" StrokeShape="RoundRectangle 10" WidthRequest="90" HeightRequest="90">
+                                <Grid>
+                                    <Image x:Name="BillQrImage" Aspect="AspectFill" IsVisible="False"/>
+                                    <Label x:Name="BillQrText" Text="QR" FontSize="10" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                            <Label Text="Scan &amp; Pay" FontSize="8" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- FOOTER - SAVE + PRINT - દૂર દૂર -->
+        <Border Grid.Row="2" BackgroundColor="White" Stroke="#00000010" StrokeShape="RoundRectangle 16" Margin="12" Padding="12">
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16">
+                <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSaveBillClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="💾 Save" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                </Border>
+                <Border Grid.Column="1" BackgroundColor="#25D366" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWhatsAppBillClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="💬 WhatsApp" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                </Border>
+                <Border Grid.Column="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPrintBillClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="🖨 Print" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
+

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.ItemMasterPage" Title="Item Master" BackgroundColor="#FAFAFA">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView><VerticalStackLayout Padding="15" Spacing="15">
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 16" Padding="15"><VerticalStackLayout Spacing="12"><Label x:Name="FormTitleLabel" Text="New Item" FontSize="16" FontAttributes="Bold" TextColor="#0A0A0A" /><Entry x:Name="ItemNameEntry" Placeholder="Item Name *" BackgroundColor="#FAFAFA" TextColor="#0A0A0A" /><Entry x:Name="RateEntry" Placeholder="Rate Per KG" Keyboard="Numeric" BackgroundColor="#FAFAFA" TextColor="#0A0A0A" /><Grid ColumnDefinitions="*,*" ColumnSpacing="10"><Button x:Name="SaveButton" Grid.Column="0" Text="Save" BackgroundColor="#FF6B00" TextColor="White" CornerRadius="10" Clicked="OnSaveClicked" /><Button x:Name="CancelButton" Grid.Column="1" Text="Cancel" BackgroundColor="#F0F0F0" TextColor="#0A0A0A" CornerRadius="10" Clicked="OnCancelClicked" IsVisible="False" /></Grid></VerticalStackLayout></Border>
+            <CollectionView x:Name="ItemsCollection"><CollectionView.ItemTemplate><DataTemplate><Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 10" Padding="12" Margin="0,5"><Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8"><VerticalStackLayout Grid.Column="0"><Label Text="{Binding Name}" FontAttributes="Bold" FontSize="13" TextColor="#0A0A0A" /></VerticalStackLayout><Label Grid.Column="1" Text="{Binding RatePerKg, StringFormat='Rs {0}/KG'}" FontSize="12" TextColor="#10B981" VerticalOptions="Center" /><Button Grid.Column="2" Text="Edit" FontSize="11" BackgroundColor="#FF6B00" TextColor="White" CornerRadius="6" HeightRequest="32" Clicked="OnEditClicked" /><Button Grid.Column="3" Text="Delete" FontSize="11" BackgroundColor="#FFE5E5" TextColor="#FF3B30" CornerRadius="6" HeightRequest="32" Clicked="OnDeleteClicked" /></Grid></Border></DataTemplate></CollectionView.ItemTemplate></CollectionView>
+        </VerticalStackLayout></ScrollView>
+</ContentPage>
+
+

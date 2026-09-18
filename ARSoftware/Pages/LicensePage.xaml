@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="ARSoftware.Pages.LicensePage" 
+    Title="License" 
+    BackgroundColor="#FAFAFA" 
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="🔐 AR SOFTWARE" FontSize="18" FontAttributes="Bold" TextColor="#D4AF37" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAdminLogoTapped" NumberOfTapsRequired="5" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="License Activation" FontSize="12" TextColor="#AAAAAA" HorizontalOptions="Center"/>
+                    <BoxView HeightRequest="1" Color="#1A1A1A"/>
+                    <Label x:Name="StatusLabel" Text="License Required" FontSize="11" TextColor="#FF6B00" HorizontalOptions="Center"/>
+                    <Label x:Name="ExpiryLabel" Text="" FontSize="10" TextColor="White" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- STEP 1: LICENSE KEY -->
+            <Border x:Name="LicenseFrame" BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Enter License Key" FontSize="11" TextColor="Black" FontAttributes="Bold"/>
+                    <Entry x:Name="KeyEntry" Placeholder="AR-1Y-XXXX-XXXX" TextColor="#FAFAFA" FontSize="12" BackgroundColor="Black" HeightRequest="45"/>
+                    <Border BackgroundColor="#003F5C" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="45">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnActivateClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="✅ Activate Now" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <Label Text="Demo Key = 7 Days Free" FontSize="9" TextColor="Black" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ✅ STEP 2: WHATSAPP OTP - NEW ADDED -->
+            <Border x:Name="OtpFrame" IsVisible="False" BackgroundColor="White" Stroke="#25D366" StrokeThickness="1.5" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="📱 WhatsApp OTP Verification" FontSize="12" FontAttributes="Bold" TextColor="#25D366" HorizontalOptions="Center"/>
+                    <Label x:Name="OtpMobileLabel" Text="OTP WhatsApp પર મોકલ્યો છે" FontSize="10" TextColor="#0A0A0A" HorizontalOptions="Center" FontAttributes="Bold"/>
+                    <Entry x:Name="OtpEntry" Placeholder="6 Digit OTP" TextColor="Black" BackgroundColor="#F0FFF4" Keyboard="Numeric" MaxLength="6" HeightRequest="50" FontSize="22" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#25D366" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="45">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnVerifyOtpClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="✅ Verify &amp; Activate License" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <Label Text="🔄 Resend OTP on WhatsApp" FontSize="10" TextColor="#FF6B00" FontAttributes="Bold" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnResendClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="OtpInfoLabel" Text="" FontSize="8" TextColor="#666" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14" x:Name="AdminBorder" IsVisible="False">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="👑 Admin - Key Generator" FontSize="11" TextColor="Black" FontAttributes="Bold"/>
+                    <Label Text="Device ID" FontSize="10" TextColor="#666"/>
+                    <Border Stroke="#E0E0E0" StrokeShape="RoundRectangle 8" Padding="8" BackgroundColor="#F9F9F9">
+                        <Label x:Name="DeviceIdLabel" Text="Loading Device ID..." FontSize="10" TextColor="Black"/>
+                    </Border>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Border Grid.Column="0" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="40">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGenerate7DaysClicked"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Generate 7 Days" FontSize="10" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="#D4AF37" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="40">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGenerate1YearClicked"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Generate 1 Year" FontSize="10" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                    <Label x:Name="GeneratedKeyLabel" Text="" FontSize="11" TextColor="#003F5C" FontAttributes="Bold" HorizontalOptions="Center" IsVisible="False"/>
+                    <BoxView HeightRequest="1" Color="#F0F0F0"/>
+                    <CollectionView x:Name="KeysCollection" HeightRequest="150"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

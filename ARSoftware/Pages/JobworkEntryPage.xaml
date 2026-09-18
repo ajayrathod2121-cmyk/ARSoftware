@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ARSoftware.Pages.JobworkEntryPage"
+             Title="Aavak" BackgroundColor="#F8F9FF">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- HEADER -->
+            <Border StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="20" BackgroundColor="#0A0A0A">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Radius="20" Offset="0,8"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="14">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="AAVAK ENTRY" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="Gaadi Aave Tyare Entry Karo" FontSize="12" TextColor="#FF6B00" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="14,8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnNewEntryClicked"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="NEW" FontSize="13" FontAttributes="Bold" TextColor="White"/>
+                        </Border>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <Border Grid.Column="0" BackgroundColor="#222222" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Total Bags" FontSize="9" TextColor="#AAAAAA"/>
+                                <Label x:Name="TotalBagsStatLabel" Text="0" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="#222222" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Net Weight" FontSize="9" TextColor="#AAAAAA"/>
+                                <Label x:Name="TotalWeightStatLabel" Text="0 Kg" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="2" BackgroundColor="#331A00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Amount" FontSize="9" TextColor="#FFCC99"/>
+                                <Label x:Name="TotalAmountStatLabel" Text="Rs 0" FontSize="16" FontAttributes="Bold" TextColor="#FF6B00"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- NEW BUTTON -->
+            <Border x:Name="NewEntryButtonBorder" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="18">
+                <Border.Shadow>
+                    <Shadow Brush="#FF6B00" Opacity="0.3" Radius="15" Offset="0,6"/>
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNewEntryClicked"/>
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="44" HeightRequest="44">
+                        <Label Text="+" FontSize="22" FontAttributes="Bold" TextColor="#FF6B00" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="New Aavak Entry" FontSize="15" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Click karo - Gaadi ni Entry karo" FontSize="11" TextColor="#FFE5CC"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text=">" FontSize="24" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" Opacity="0.7"/>
+                </Grid>
+            </Border>
+
+            <!-- FORM -->
+            <Border x:Name="AavakForm" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="0" IsVisible="False">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.08" Radius="20" Offset="0,8"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="0">
+                    <Grid ColumnDefinitions="*,Auto" Padding="20,16" BackgroundColor="#FAFAFA">
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="NEW AAVAK FORM" FontSize="14" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                            <Label Text="Badhi vigat dhyan thi bharo" FontSize="10" TextColor="#888888"/>
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="#FFE5E5" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="12,6">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCancelClicked"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="CLOSE" FontSize="11" FontAttributes="Bold" TextColor="#FF3B30"/>
+                        </Border>
+                    </Grid>
+                    <BoxView HeightRequest="1" Color="#F0F0F0"/>
+                    <VerticalStackLayout Padding="20" Spacing="16">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                                <Label Text="ENTRY DATE" FontSize="10" FontAttributes="Bold" TextColor="#666666"/>
+                                <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FAFAFF">
+                                    <DatePicker x:Name="EntryDatePicker" BackgroundColor="Transparent" TextColor="#0A0A0A"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="6">
+                                <Label Text="BILL NO" FontSize="10" FontAttributes="Bold" TextColor="#666666"/>
+                                <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FAFAFF">
+                                    <Entry x:Name="BillNoEntry" Placeholder="B001" BackgroundColor="Transparent" TextColor="#0A0A0A"/>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="PARTY NAME" FontSize="10" FontAttributes="Bold" TextColor="#666666"/>
+                            <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FAFAFF">
+                                <Entry x:Name="PartyNameEntry" Placeholder="Rameshbhai Patel" BackgroundColor="Transparent" TextColor="#0A0A0A"/>
+                            </Border>
+                        </VerticalStackLayout>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                                <Label Text="PRODUCT NAME" FontSize="10" FontAttributes="Bold" TextColor="#666666"/>
+                                <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FAFAFF">
+                                    <Entry x:Name="ItemNameEntry" Placeholder="Mirchi, Dhana" BackgroundColor="Transparent" TextColor="#0A0A0A"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="6">
+                                <Label Text="JOBWORK TYPE" FontSize="10" FontAttributes="Bold" TextColor="#FF6B00"/>
+                                <Border Stroke="#FFCC99" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FFF7ED">
+                                    <Entry x:Name="JobworkTypeEntry" Placeholder="Grinding" BackgroundColor="Transparent" TextColor="#0A0A0A"/>
+                                </Border>
+                                <CollectionView x:Name="SavedJobworkTypesCollection" HeightRequest="36" SelectionMode="Single" SelectionChanged="OnSavedJobworkSelected">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BackgroundColor="#FFF0E0" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="12,6">
+                                                <Label Text="{Binding}" FontSize="10" FontAttributes="Bold" TextColor="#FF6B00"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Grid>
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="14" BackgroundColor="#F8FFF8">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="BAGS AND WEIGHT" FontSize="11" FontAttributes="Bold" TextColor="#10B981"/>
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="Bags" FontSize="9" TextColor="#666666"/>
+                                        <Border Stroke="#BBF7D0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10,2">
+                                            <Entry x:Name="BagsEntry" Placeholder="25" Keyboard="Numeric" BackgroundColor="Transparent" TextColor="#0A0A0A" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="Per Bag" FontSize="9" TextColor="#666666"/>
+                                        <Border Stroke="#BBF7D0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10,2">
+                                            <Entry x:Name="BagWeightEntry" Placeholder="40" Keyboard="Numeric" BackgroundColor="Transparent" TextColor="#0A0A0A" HorizontalTextAlignment="Center" Text="40"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="4">
+                                        <Label Text="Total" FontSize="9" TextColor="#666666" FontAttributes="Bold"/>
+                                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 10" BackgroundColor="#10B981" Padding="10,6">
+                                            <Entry x:Name="TotalWeightEntry" Placeholder="1000" BackgroundColor="Transparent" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" IsReadOnly="True"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="Vehicle Wt" FontSize="9" TextColor="#888888"/>
+                                        <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10,2">
+                                            <Entry x:Name="VehicleWeightEntry" Placeholder="0" Keyboard="Numeric" BackgroundColor="Transparent" TextColor="#0A0A0A" HorizontalTextAlignment="Center" Text="0"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="Kharabo" FontSize="9" TextColor="#FF3B30"/>
+                                        <Border Stroke="#FFCCCC" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10,2">
+                                            <Entry x:Name="KharaboEntry" Placeholder="0" Keyboard="Numeric" BackgroundColor="Transparent" TextColor="#FF3B30" HorizontalTextAlignment="Center" Text="0"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="4">
+                                        <Label Text="Net Weight" FontSize="9" TextColor="#0A0A0A" FontAttributes="Bold"/>
+                                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 10" BackgroundColor="#0A0A0A" Padding="10,6">
+                                            <Entry x:Name="NetWeightEntry" Placeholder="980" BackgroundColor="Transparent" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" IsReadOnly="True"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                                <Label Text="VEHICLE NO" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                                <Border Stroke="#0A0A0A" StrokeThickness="1.2" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FFFBEB">
+                                    <Entry x:Name="VehicleEntry" Placeholder="GJ03 AB 1234" BackgroundColor="Transparent" TextColor="#0A0A0A" FontAttributes="Bold"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="6">
+                                <Label Text="RATE" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                                <Border Stroke="#EEEEEE" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,4" BackgroundColor="#FAFAFF">
+                                    <Entry x:Name="RateEntry" Placeholder="50" Keyboard="Numeric" BackgroundColor="Transparent" TextColor="#0A0A0A" FontAttributes="Bold" Text="50"/>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="16" BackgroundColor="#10B981">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2" VerticalOptions="Center">
+                                    <Label Text="TOTAL AMOUNT" FontSize="10" FontAttributes="Bold" TextColor="#BBF7D0"/>
+                                    <Entry x:Name="AmountEntry" Placeholder="Rs 49000" BackgroundColor="Transparent" TextColor="White" FontAttributes="Bold" FontSize="18" IsReadOnly="True"/>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" x:Name="CalculationLabel" Text="Calc" FontSize="10" TextColor="#D1FAE5" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
+                            <Button Grid.Column="0" x:Name="CancelButton" Text="CANCEL" BackgroundColor="#F0F0F0" TextColor="#666666" CornerRadius="14" HeightRequest="50" FontAttributes="Bold" Clicked="OnCancelClicked"/>
+                            <Button Grid.Column="1" x:Name="SaveButton" Text="SAVE AAVAK" BackgroundColor="#FF6B00" TextColor="White" CornerRadius="14" HeightRequest="50" FontAttributes="Bold" Clicked="OnSaveClicked"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- LIST -->
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="0">
+                <VerticalStackLayout Spacing="0">
+                    <Grid ColumnDefinitions="*,Auto" Padding="20,16">
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="AAVAK BILLS" FontSize="14" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                            <Label Text="Edit karva card par tap karo" FontSize="10" TextColor="#888888"/>
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="#F0F0F0" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="10,5">
+                            <Label x:Name="BillsCountLabel" Text="0 Bills" FontSize="10" FontAttributes="Bold" TextColor="#666666"/>
+                        </Border>
+                    </Grid>
+                    <BoxView HeightRequest="1" Color="#F5F5F5"/>
+                    <CollectionView x:Name="AllBillsCollection" Margin="12" SelectionMode="Single" SelectionChanged="OnBillSelectedForEdit">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="#FAFAFF" Stroke="#F0F0F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="14">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                        <Border Grid.Column="0" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="44" HeightRequest="44">
+                                            <Label Text="B" FontSize="16" FontAttributes="Bold" TextColor="#FF6B00" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                                                <Label Text="{Binding PartyName}" FontAttributes="Bold" FontSize="13" TextColor="#0A0A0A"/>
+                                                <Border Grid.Column="1" BackgroundColor="#FFF0E0" StrokeThickness="0" StrokeShape="RoundRectangle 6" Padding="6,2">
+                                                    <Label Text="{Binding BillNo}" FontSize="9" FontAttributes="Bold" TextColor="#FF6B00"/>
+                                                </Border>
+                                            </Grid>
+                                            <Label Text="{Binding ItemName}" FontSize="11" TextColor="#666666"/>
+                                            <HorizontalStackLayout Spacing="8">
+                                                <Border BackgroundColor="#E8F5E8" StrokeThickness="0" StrokeShape="RoundRectangle 6" Padding="6,2">
+                                                    <Label Text="{Binding Bags, StringFormat='{0} Bags'}" FontSize="9" FontAttributes="Bold" TextColor="#10B981"/>
+                                                </Border>
+                                                <Label Text="{Binding VehicleNo}" FontSize="9" TextColor="#888888" VerticalOptions="Center"/>
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+                                        <HorizontalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                            <Border BackgroundColor="#E5F0FF" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="32" HeightRequest="32">
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnEditBillClicked"/>
+                                                </Border.GestureRecognizers>
+                                                <Label Text="E" FontSize="12" FontAttributes="Bold" TextColor="#0066FF" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Border>
+                                            <Border BackgroundColor="#FFE5E5" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="32" HeightRequest="32">
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnDeleteBillClicked"/>
+                                                </Border.GestureRecognizers>
+                                                <Label Text="D" FontSize="12" FontAttributes="Bold" TextColor="#FF3B30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Border>
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

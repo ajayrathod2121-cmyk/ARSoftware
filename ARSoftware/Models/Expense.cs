@@ -1,0 +1,1 @@
+namespace ARSoftware.Models { public class Expense { public long Id { get; set; } public string Title { get; set; } = ""; public string Category { get; set; } = ""; public decimal Amount { get; set; } public DateTime ExpenseDate { get; set; } = DateTime.Now.Date; public string Remark { get; set; } = ""; public DateTime CreatedAt { get; set; } = DateTime.Now; } }

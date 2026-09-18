@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.SettingsPage" Title="Settings" BackgroundColor="#FAFAFA" Shell.NavBarIsVisible="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="12" Spacing="16">
+            <!-- 🔒 SECRET HEADER - AR TRADING LOGO પર SECRET છે! -->
+            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="14">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+                    <!-- 👑 1. LEFT - AR TRADING STATIC LOGO - આ કદી Change નથી થતો - આના પર 5 વાર Tap કરો તો Admin ખુલશે! -->
+                    <Border BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="46" HeightRequest="46">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogoTapped"/>
+                        </Border.GestureRecognizers>
+                        <Grid>
+                            <Image Source="applogo.png" Aspect="AspectFill"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- વચ્ચે Business Name -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label x:Name="BusinessNameLabel" Text="AR SOFTWARE" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                        <Label x:Name="BusinessAddressLabel" Text="Bhavnagar, Gujarat" FontSize="10" TextColor="#AAAAAA"/>
+                    </VerticalStackLayout>
+
+                    <!-- 2. RIGHT - BUSINESS LOGO - આ Change થાય છે - Upload માટે -->
+                    <Border Grid.Column="2" BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="46" HeightRequest="46">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogoUpload"/>
+                        </Border.GestureRecognizers>
+                        <Grid>
+                            <Image x:Name="LogoImage" Aspect="AspectFill" IsVisible="False"/>
+                            <Label x:Name="LogoText" Text="AR" FontAttributes="Bold" TextColor="#FF6B00" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border BackgroundColor="LimeGreen" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🏢 Business Detail - 7 Detail" FontSize="13" FontAttributes="Bold" TextColor="Black"/>
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="1. કંપની નું નામ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                        <Entry x:Name="BusinessNameEntry" Placeholder="AR SOFTWARE" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="2. આખું એડ્રેસ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                        <Entry x:Name="AddressEntry" Placeholder="Plot No, Road, Area" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="3. શહેર (City)" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="CityEntry" Placeholder="Bhavnagar" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="3">
+                            <Label Text="4. પિનકોડ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="PincodeEntry" Placeholder="364001" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA" Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="5. મોબાઈલ નંબર" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="MobileEntry" Placeholder="9876543210" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA" Keyboard="Telephone"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="3">
+                            <Label Text="6. ઈમેલ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="EmailEntry" Placeholder="ar@gmail.com" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA" Keyboard="Email"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="7. GST નંબર" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                        <Entry x:Name="GstEntry" Placeholder="24ABCDE1234F1Z5" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="RosyBrown" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="⚙ App Settings" FontSize="13" FontAttributes="Bold" TextColor="Black"/>
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,4"></Grid>
+                    <BoxView HeightRequest="1" Color="Brown"/>
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,4">
+                        <VerticalStackLayout Spacing="1">
+                            <Label Text="Auto Backup" FontSize="11" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold"/>
+                            <Label Text="દર કલાકે Backup લેવું" FontSize="8" TextColor="Black"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="AutoBackupSwitch" Grid.Column="1" IsToggled="True" Toggled="OnAutoBackupToggled" OnColor="#003F5C" ThumbColor="Black"/>
+                    </Grid>
+                    <BoxView HeightRequest="1" Color="Green"/>
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,4">
+                        <VerticalStackLayout Spacing="1">
+                            <Label Text="Google Drive Auto Backup" FontSize="11" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold"/>
+                            <Label Text="દર 1 કલાકે Drive પર" FontSize="8" TextColor="Black"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="DriveAutoBackupSwitch" Grid.Column="1" Toggled="OnDriveAutoBackupToggled" OnColor="#4285F4" ThumbColor="Black"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="Blue" Stroke="#003F5C" StrokeThickness="0.8" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🏦 Bank Detail - Bill માં આવશે" FontSize="13" FontAttributes="Bold" TextColor="Black"/>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="8. બેંક નું નામ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="BankNameEntry" Placeholder="SBI" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="3">
+                            <Label Text="9. ખાતા નંબર" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="AccountNoEntry" Placeholder="123456789" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA" Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="10. IFSC કોડ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="IfscEntry" Placeholder="SBIN012345" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="3">
+                            <Label Text="11. ધારક નું નામ" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                            <Entry x:Name="AccountHolderEntry" Placeholder="AR Software" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="12. UPI ID" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                        <Entry x:Name="UpiIdEntry" Placeholder="9876543210@paytm" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="38" BackgroundColor="#FAFAFA"/>
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Border BackgroundColor="#FAFAFA" Stroke="#E0E0E0" StrokeShape="RoundRectangle 8" WidthRequest="70" HeightRequest="70">
+                            <Grid>
+                                <Image x:Name="QrImage" Aspect="AspectFill" IsVisible="False"/>
+                                <Label x:Name="QrText" Text="QR" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="13. UPI QR Code" FontSize="11" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Bill માં QR દેખાશે" FontSize="9" TextColor="Black"/>
+                        </VerticalStackLayout>
+                        <Border Grid.Column="2" BackgroundColor="#003F5C" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="56" HeightRequest="30" VerticalOptions="Center">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnQrUpload"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Upload" FontSize="9" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Spacing="3">
+                        <Label Text="14. Terms &amp; Conditions" FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                        <Editor x:Name="TermsEntry" Placeholder="1. Payment Due in 7 Days&#x0a;2. Goods once sold will not be taken back" TextColor="Black" PlaceholderColor="#999" FontSize="11" HeightRequest="70" BackgroundColor="#FAFAFA"/>
+                    </VerticalStackLayout>
+                    <Border BackgroundColor="#003F5C" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="36">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSaveSettings"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="💾 Save All &amp; Close" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <Label x:Name="SavedLabel" Text="" FontSize="10" TextColor="Black" HorizontalOptions="Center" IsVisible="False"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="12">
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16">
+                    <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="36">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnChangePasswordClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Change" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="#003F5C" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="36">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnForgotPasswordClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Forgot" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <Border Grid.Column="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="36">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDeletedHistoryClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Bin" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border BackgroundColor="#4285F4" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="12">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                        <Label Text="☁ Google Drive" FontSize="11" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                        <Label x:Name="DriveStatusLabel" Grid.Column="1" Text="❌ Not Connected" FontSize="9" TextColor="#FFEB3B" VerticalOptions="Center"/>
+                    </Grid>
+                    <Label x:Name="DriveEmailLabel" Text="" FontSize="8" TextColor="White" IsVisible="False"/>
+                    <Label x:Name="LastDriveBackupLabel" Text="Last Backup: Never" FontSize="8" TextColor="White"/>
+                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="14">
+                        <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="30">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnConnectDrive"/>
+                            </Border.GestureRecognizers>
+                            <Label x:Name="ConnectDriveButton" Text="Connect" FontSize="8" FontAttributes="Bold" TextColor="#4285F4" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="30">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDriveBackupNow"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Drive" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <Border Grid.Column="2" BackgroundColor="#003F5C" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="30">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnBackupNow"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Backup" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <Border Grid.Column="3" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="30">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnMobileSync"/>
+                            </Border.GestureRecognizers>
+                            <Label Text="Sync" FontSize="8" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

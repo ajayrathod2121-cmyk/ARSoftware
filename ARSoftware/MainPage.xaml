@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ARSoftware.MainPage" 
+             BackgroundColor="#1E1E1E" Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- TOP BAR - Premium Black -->
+        <Border Grid.Row="0" BackgroundColor="#0A0A0A" StrokeThickness="0" Padding="0">
+            <Grid RowDefinitions="Auto,Auto" Padding="16,12">
+                <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                    <Border BackgroundColor="#1A1A1A" Stroke="#FF6B00" StrokeThickness="1" StrokeShape="RoundRectangle 12" WidthRequest="42" HeightRequest="42" VerticalOptions="Center">
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
+                            <Label Text="AR" FontSize="16" FontAttributes="Bold" TextColor="#FF6B00" HorizontalOptions="Center" />
+                            <Label Text="SOFTWARE" FontSize="6" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" Margin="0,-2,0,0" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="1" VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="6">
+                            <Border BackgroundColor="#FFFFFF15" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="7,2" VerticalOptions="Center">
+                                <Label Text="v2.4.1" FontSize="9" TextColor="#FFFFFF80" />
+                            </Border>
+                            <Border BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="10,4" VerticalOptions="Center">
+                                <Label Text="LIVE" TextColor="White" FontSize="9" FontAttributes="Bold" />
+                            </Border>
+                        </HorizontalStackLayout>
+                        <Label x:Name="BusinessAddressTopLabel" Text="Jobwork Management - Bhavnagar" FontSize="10" TextColor="#AAAAAA" />
+                    </VerticalStackLayout>
+
+                    <!-- LOGOUT BUTTON - NEW ADDED -->
+                    <Border Grid.Column="2" BackgroundColor="#2A1A1A" Stroke="#FF3B30" StrokeThickness="1" StrokeShape="RoundRectangle 10" WidthRequest="36" HeightRequest="36" VerticalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLogoutClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="OUT" FontSize="9" FontAttributes="Bold" TextColor="#FF3B30" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <Border Grid.Column="3" BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 10" WidthRequest="36" HeightRequest="36" VerticalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMoreClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="..." FontSize="16" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+                <Label Grid.Row="1" x:Name="WelcomeLabel" Text="Wednesday, 16 September 2026" FontSize="9" TextColor="#666666" Margin="0,10,0,0" />
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="12" Spacing="12">
+                <!-- 4 CARDS - Same as yours -->
+                <Grid x:Name="StatsGrid" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#10B981" Stroke="#FF6B00" StrokeThickness="1.2" StrokeShape="RoundRectangle 18" Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Total Stock" FontSize="10" TextColor="#888" FontAttributes="Bold" />
+                                <Border BackgroundColor="#FFF7ED" StrokeThickness="0" StrokeShape="RoundRectangle 6" Padding="6,2">
+                                    <Label Text="LIVE" FontSize="7" FontAttributes="Bold" TextColor="#FF6B00" />
+                                </Border>
+                            </Grid>
+                            <Label x:Name="TotalAavakLabel" Text="0 Bags" FontSize="22" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label Text="2 Entries" FontSize="9" TextColor="#10B981" FontAttributes="Bold" />
+                            <ProgressBar Progress="0.75" ProgressColor="#FF6B00" HeightRequest="4" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Pending" FontSize="10" TextColor="#AAAAAA" FontAttributes="Bold" />
+                            <Label x:Name="PadeluLabel" Text="0 Bags" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                            <Label x:Name="PendingLabel" Text="1 Pending" FontSize="9" TextColor="#FF6B00" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#007ACC" Stroke="#00000010" StrokeShape="RoundRectangle 18" Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Delivered" FontSize="10" TextColor="black" FontAttributes="Bold" />
+                            <Label x:Name="DeliveredLabel" Text="0 Bags" FontSize="22" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label x:Name="PartyCountLabel" Text="0 Parties" FontSize="9" TextColor="#666" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#007ACC" Stroke="#FF6B0030" StrokeShape="RoundRectangle 18" Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Payment Baki" FontSize="10" TextColor="Black" FontAttributes="Bold" />
+                            <Label x:Name="PaymentLabel" Text="Rs 0" FontSize="22" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label Text="Today Collection" FontSize="9" TextColor="#10B981" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- QUICK ACTIONS -->
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 16" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Quick Actions" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" />
+                        <Grid ColumnDefinitions="*,*,*,*" RowSpacing="8" ColumnSpacing="8">
+                            <Border BackgroundColor="#10B981" Stroke="#FF6B00" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="8" HeightRequest="66">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAavakClicked"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Aavak" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="1" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="8" HeightRequest="66">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnJavakClicked"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Javak" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="8" HeightRequest="66">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPartyClicked"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Bill" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="3" BackgroundColor="#10B981" Stroke="#10B981" StrokeThickness="0.8" StrokeShape="RoundRectangle 12" Padding="8" HeightRequest="66">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPartyClicked"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Payment" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#00000010" StrokeShape="RoundRectangle 18" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Recent Jobwork" FontSize="12" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label Text="View All" FontSize="9" FontAttributes="Bold" TextColor="#FF6B00" VerticalOptions="Center"/>
+                        </Grid>
+                        <CollectionView x:Name="RecentCollection" HeightRequest="180">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#F8F8F7" Stroke="#00000006" StrokeShape="RoundRectangle 12" Padding="10" Margin="0,3">
+                                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                            <Border Grid.Column="0" BackgroundColor="White" Stroke="#00000010" StrokeShape="RoundRectangle 8" WidthRequest="34" HeightRequest="34">
+                                                <Label Text="{Binding BillNo}" FontSize="7" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center" VerticalOptions="Center" />
+                                            </Border>
+                                            <VerticalStackLayout Grid.Column="1" Spacing="1">
+                                                <Label Text="{Binding PartyName}" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                                <Label Text="{Binding ItemName}" FontSize="9" TextColor="#666666" />
+                                            </VerticalStackLayout>
+                                            <Border Grid.Column="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 6" Padding="5,2">
+                                                <Label Text="{Binding Status}" FontSize="7" FontAttributes="Bold" TextColor="White" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="White" Stroke="#00000010" StrokeShape="RoundRectangle 18" Padding="10">
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Party Master" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                <Label x:Name="ItemCountLabel" Text="2 Entries" FontSize="8" TextColor="#888888" VerticalOptions="Center"/>
+                            </Grid>
+                            <CollectionView x:Name="PartyCollection" HeightRequest="120">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BackgroundColor="#F8F8F7" Stroke="#00000004" StrokeShape="RoundRectangle 10" Padding="8" Margin="0,2">
+                                            <Label Text="{Binding PartyName}" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="White" Stroke="#00000010" StrokeShape="RoundRectangle 18" Padding="10">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Item Master" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Label Text="2 Items" FontSize="8" TextColor="#888888" />
+                            <CollectionView x:Name="ItemCollection" HeightRequest="120">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BackgroundColor="#F8F8F7" Stroke="#00000004" StrokeShape="RoundRectangle 10" Padding="8" Margin="0,2">
+                                            <Label Text="{Binding ItemName}" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+

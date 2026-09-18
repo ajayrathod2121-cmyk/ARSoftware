@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.LoginPage" BackgroundColor="#0A1931" Shell.NavBarIsVisible="False" Shell.FlyoutBehavior="Disabled">
+    <Grid>
+        <Image Source="ganesh_mobile_bg.jpg" Aspect="AspectFill" IsVisible="{OnIdiom Phone=True, Default=False}" />
+        <Image Source="ganesh_pc_bg.jpg" Aspect="AspectFill" IsVisible="{OnIdiom Phone=False, Default=True}" />
+        <ScrollView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="{OnIdiom Phone=0, Desktop=480, Default=0}"/>
+                </Grid.ColumnDefinitions>
+                <VerticalStackLayout Grid.Column="0" Spacing="0">
+                    <BoxView HeightRequest="380" BackgroundColor="Transparent" IsVisible="{OnIdiom Phone=True, Default=False}"/>
+                    <Image Source="ar_logo.png" HeightRequest="140" WidthRequest="200" HorizontalOptions="Center" Aspect="AspectFit" IsVisible="{OnIdiom Phone=True, Default=False}" Margin="0,0,0,8"/>
+                    <Border IsVisible="{OnIdiom Phone=True, Default=False}" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="22,20" Margin="20,0,20,20" MaximumWidthRequest="480" HorizontalOptions="Center">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Opacity="0.3" Radius="12" Offset="0,6"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout Spacing="14">
+                            <Label Text="Welcome to AR TRADING" FontSize="16" FontAttributes="Bold" TextColor="#0A1931" HorizontalOptions="Center"/>
+                            <Grid ColumnDefinitions="80,*" ColumnSpacing="10" RowDefinitions="Auto,Auto" RowSpacing="12">
+                                <Label Text="Username" FontSize="11" FontAttributes="Bold" TextColor="#0A1931" VerticalOptions="Center"/>
+                                <Border Grid.Column="1" BackgroundColor="#F9F9F9" Stroke="#E0E0E0" StrokeShape="RoundRectangle 8" Padding="10,2">
+                                    <Entry x:Name="UsernameEntryMobile" Placeholder="Enter your username" PlaceholderColor="#AAA" TextColor="#0A0A0A" FontSize="12" HeightRequest="36"/>
+                                </Border>
+                                <Label Grid.Row="1" Text="Password" FontSize="11" FontAttributes="Bold" TextColor="#0A1931" VerticalOptions="Center"/>
+                                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#F9F9F9" Stroke="#E0E0E0" StrokeShape="RoundRectangle 8" Padding="10,2">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Entry x:Name="PasswordEntryMobile" Placeholder="Enter your password" PlaceholderColor="#AAA" TextColor="#0A0A0A" FontSize="12" IsPassword="True" HeightRequest="36"/>
+                                        <Label Grid.Column="1" Text="👁" FontSize="14" VerticalOptions="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnShowPasswordClicked"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <Border BackgroundColor="#D4AF37" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="44">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLoginClicked"/>
+                                </Border.GestureRecognizers>
+                                <Label Text="Login" FontSize="15" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+                            <Label x:Name="ErrorLabelMobile" Text="" FontSize="10" FontAttributes="Bold" TextColor="#EF4444" IsVisible="False" HorizontalOptions="Center"/>
+                            <Label Text="Forgot Password?" FontSize="10" FontAttributes="Bold" TextColor="#0A1931" HorizontalOptions="Center" TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnForgotClicked"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" IsVisible="{OnIdiom Phone=False, Default=True}" VerticalOptions="Center" Padding="24" Spacing="16">
+                    <Image Source="ar_logo.png" HeightRequest="120" WidthRequest="200" HorizontalOptions="Center" Aspect="AspectFit"/>
+                    <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="28,30" MaximumWidthRequest="420" HorizontalOptions="Center">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Opacity="0.4" Radius="16" Offset="0,8"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout Spacing="18">
+                            <Label Text="Welcome to AR" FontSize="20" FontAttributes="Bold" TextColor="#0A1931" HorizontalOptions="Center"/>
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Username" FontSize="11" FontAttributes="Bold" TextColor="#0A1931"/>
+                                <Border BackgroundColor="#F9F9F9" Stroke="#E0E0E0" StrokeShape="RoundRectangle 10" Padding="14,6">
+                                    <Entry x:Name="UsernameEntry" Placeholder="Enter your username" PlaceholderColor="#AAA" TextColor="#0A0A0A" FontSize="13" HeightRequest="42"/>
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Password" FontSize="11" FontAttributes="Bold" TextColor="#0A1931"/>
+                                <Border BackgroundColor="#F9F9F9" Stroke="#E0E0E0" StrokeShape="RoundRectangle 10" Padding="14,6">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Entry x:Name="PasswordEntry" Placeholder="Enter your password" PlaceholderColor="#AAA" TextColor="#0A0A0A" FontSize="13" IsPassword="True" HeightRequest="42"/>
+                                        <Label Grid.Column="1" Text="👁" FontSize="16" VerticalOptions="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnShowPasswordClicked"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </Border>
+                            </VerticalStackLayout>
+                            <Border BackgroundColor="#D4AF37" StrokeThickness="0" StrokeShape="RoundRectangle 12" HeightRequest="50">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLoginClicked"/>
+                                </Border.GestureRecognizers>
+                                <Label Text="Login" FontSize="16" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+                            <Label x:Name="ErrorLabel" Text="" FontSize="11" FontAttributes="Bold" TextColor="#EF4444" IsVisible="False" HorizontalOptions="Center"/>
+                            <Label Text="Forgot Password?" FontSize="11" FontAttributes="Bold" TextColor="#D4AF37" HorizontalOptions="Center" TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnForgotClicked"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+

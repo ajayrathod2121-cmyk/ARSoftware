@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.PaymentPage" Title="Payment" BackgroundColor="#F8F8F7" Shell.NavBarIsVisible="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" BackgroundColor="#0A0A0A" StrokeThickness="0" HeightRequest="52">
+            <Grid ColumnDefinitions="*,Auto" Padding="14,0">
+                <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                    <Label Text="💰 Payment In - પેમેન્ટ" FontAttributes="Bold" TextColor="White" FontSize="13" />
+                    <Label x:Name="TotalLabel" Text="Baki Rs 0" FontSize="9" TextColor="#10B981" FontAttributes="Bold" />
+                </VerticalStackLayout>
+                <Border Grid.Column="1" x:Name="TopAddBtn" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,8" VerticalOptions="Center">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAddToggleClicked" />
+                    </Border.GestureRecognizers>
+                    <Label x:Name="TopAddBtnLabel" Text="➕ Add Payment" FontSize="11" FontAttributes="Bold" TextColor="White" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="12" Spacing="12">
+                <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                    <Label Text="💵 Cash, 🏦 Online, 📱 UPI, 🔄 RTGS, 💳 NEFT, 🧾 Cheque" FontSize="9" TextColor="#10B981" FontAttributes="Bold" />
+                </Border>
+
+                <Border x:Name="AddFormBorder" IsVisible="False" BackgroundColor="White" Stroke="#FF6B00" StrokeThickness="1.5" StrokeShape="RoundRectangle 16" Padding="14">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="💰 Add Payment" FontAttributes="Bold" FontSize="13" TextColor="#FF6B00" />
+                            <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="8,4">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAddToggleClicked" />
+                                </Border.GestureRecognizers>
+                                <Label Text="✕ બંધ કરો" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                            </Border>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="👥 Party Name *" FontSize="10" TextColor="#0A0A0A" FontAttributes="Bold" />
+                                <Border BackgroundColor="#F8F8F7" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="10,0" HeightRequest="40">
+                                    <Entry x:Name="PartyNameEntry" Placeholder="👥 Rameshbhai" FontSize="11" TextColor="Black" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="💰 Amount Rs *" FontSize="10" TextColor="#0A0A0A" FontAttributes="Bold" />
+                                <Border BackgroundColor="#F8F8F7" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="10,0" HeightRequest="40">
+                                    <Entry x:Name="AmountEntry" Placeholder="💰 50000" Keyboard="Numeric" FontSize="11" TextColor="Black" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="💳 Payment Type *" FontSize="10" TextColor="#0A0A0A" FontAttributes="Bold" />
+                            <Border BackgroundColor="#F8F8F7" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="2" HeightRequest="40">
+                                <Picker x:Name="PaymentTypePicker" Title="💳 Select Payment Type" FontSize="11" TextColor="Black" TitleColor="#888">
+                                    <Picker.Items>
+                                        <x:String>Cash</x:String>
+                                        <x:String>Online</x:String>
+                                        <x:String>UPI</x:String>
+                                        <x:String>RTGS</x:String>
+                                        <x:String>NEFT</x:String>
+                                        <x:String>Cheque</x:String>
+                                        <x:String>Bank Transfer</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <Border x:Name="BankDetailBorder" BackgroundColor="#F0FFF4" Stroke="#10B981" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12" IsVisible="False">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="🏦 Bank Detail" FontAttributes="Bold" FontSize="11" TextColor="#10B981" />
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="🏦 Bank Name" FontSize="9" TextColor="#666" />
+                                        <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 8" Padding="8,0" HeightRequest="36">
+                                            <Entry x:Name="BankNameEntry" Placeholder="🏦 SBI" FontSize="10" TextColor="Black" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="🔑 IFSC" FontSize="9" TextColor="#666" />
+                                        <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 8" Padding="8,0" HeightRequest="36">
+                                            <Entry x:Name="IFSCEntry" Placeholder="🔑 SBIN0001234" FontSize="10" TextColor="Black" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="💳 Account No / UPI ID" FontSize="9" TextColor="#666" />
+                                    <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 8" Padding="8,0" HeightRequest="36">
+                                        <Entry x:Name="AccountNoEntry" Placeholder="💳 Account No / UPI ID" FontSize="10" TextColor="Black" />
+                                    </Border>
+                                </VerticalStackLayout>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label x:Name="TransactionLabel" Text="🔢 UTR / Transaction ID" FontSize="9" TextColor="#666" />
+                                        <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 8" Padding="8,0" HeightRequest="36">
+                                            <Entry x:Name="TransactionIdEntry" Placeholder="🔢 UTR No" FontSize="10" TextColor="Black" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="🧾 Cheque No" FontSize="9" TextColor="#666" />
+                                        <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 8" Padding="8,0" HeightRequest="36">
+                                            <Entry x:Name="ChequeNoEntry" Placeholder="🧾 Cheque No" FontSize="10" TextColor="Black" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="📅 Date" FontSize="9" TextColor="#0A0A0A" FontAttributes="Bold" />
+                                <Border BackgroundColor="#F8F8F7" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="8,0" HeightRequest="40">
+                                    <DatePicker x:Name="PaymentDatePicker" FontSize="11" TextColor="Black" />
+                                </Border>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="📝 Remark" FontSize="9" TextColor="#0A0A0A" FontAttributes="Bold" />
+                                <Border BackgroundColor="#F8F8F7" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="8,0" HeightRequest="40">
+                                    <Entry x:Name="RemarkEntry" Placeholder="📝 Advance" FontSize="11" TextColor="Black" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="42">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCancelClicked" />
+                                </Border.GestureRecognizers>
+                                <Label Text="❌ Cancel" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Border Grid.Column="1" BackgroundColor="#10B981" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="42">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSavePaymentClicked" />
+                                </Border.GestureRecognizers>
+                                <Label x:Name="SaveButtonLabel" Text="💾 Save" FontSize="11" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="📋 Payment History" FontAttributes="Bold" FontSize="12" TextColor="#0A0A0A" />
+                <CollectionView x:Name="PaymentCollection">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="White" Stroke="#00000006" StrokeShape="RoundRectangle 14" Padding="12" Margin="0,6">
+                                <VerticalStackLayout Spacing="6">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="{Binding PartyName}" FontSize="12" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                                        <Label Grid.Column="1" Text="{Binding Amount, StringFormat='Rs {0:N0}'}" FontSize="12" FontAttributes="Bold" TextColor="#10B981"/>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="6">
+                                        <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 6" Padding="6,2">
+                                            <Label Text="{Binding PaymentType}" FontSize="8" FontAttributes="Bold" TextColor="White"/>
+                                        </Border>
+                                        <Label Grid.Column="1" Text="{Binding BankName}" FontSize="9" FontAttributes="Bold" TextColor="#0066FF" VerticalOptions="Center" />
+                                        <Label Grid.Column="2" Text="{Binding PaymentDate, StringFormat='{0:dd/MM/yy}'}" FontSize="8" TextColor="#666" VerticalOptions="Center"/>
+                                    </Grid>
+                                    <Label Text="{Binding TransactionId}" FontSize="9" TextColor="#FF6B00" FontAttributes="Bold" />
+                                    <Label Text="{Binding Remark}" FontSize="9" TextColor="#888" />
+                                    <HorizontalStackLayout Spacing="8" Margin="0,6,0,0">
+                                        <Border BackgroundColor="#F0F0F0" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="36" HeightRequest="36">
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnEditPaymentClicked" />
+                                            </Border.GestureRecognizers>
+                                            <Label Text="✏️" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Border>
+                                        <Border BackgroundColor="#FFE0E0" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="36" HeightRequest="36">
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnDeletePaymentClicked" />
+                                            </Border.GestureRecognizers>
+                                            <Label Text="🗑️" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Border>
+                                        <Border BackgroundColor="#FFF7ED" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="36" HeightRequest="36">
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnPrintPaymentClicked" />
+                                            </Border.GestureRecognizers>
+                                            <Label Text="🖨️" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Border>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border x:Name="BottomAddButton" Grid.Row="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Margin="12" Padding="0" HeightRequest="44" IsVisible="True">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnAddToggleClicked" />
+            </Border.GestureRecognizers>
+            <HorizontalStackLayout Spacing="6" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="➕" FontSize="14" TextColor="White" VerticalOptions="Center"/>
+                <Label Text="Add Payment - પેમેન્ટ ઉમેરો" FontSize="11" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
+

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="ARSoftware.Pages.AdminKeyGeneratorPage" 
+    Title="Key Generator" 
+    BackgroundColor="#FAFAFA">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="16">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="👑 AR ADMIN KEY GENERATOR" FontSize="14" FontAttributes="Bold" TextColor="#D4AF37" HorizontalOptions="Center"/>
+                    <Label Text="Only For Owner - Secret Tool" FontSize="9" TextColor="#AAAAAA" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Party Name (કોણે આપવાની છે?)" FontSize="11" TextColor="Black" FontAttributes="Bold"/>
+                    <Entry x:Name="PartyNameEntry" Placeholder="દા.ત. Bhavnagar Diamond" TextColor="Black" BackgroundColor="#F5F5F5" HeightRequest="45"/>
+
+                    <!-- ✅ NEW: MOBILE NUMBER - OTP આના પર જશે -->
+                    <Label Text="📱 Mobile Number (OTP આના પર જશે) *" FontSize="11" TextColor="#FF6B00" FontAttributes="Bold"/>
+                    <Entry x:Name="MobileEntry" Placeholder="9876543210" TextColor="Black" BackgroundColor="#FFF7ED" Keyboard="Telephone" MaxLength="10" HeightRequest="45"/>
+
+                    <Label Text="License Type સિલેક્ટ કરો" FontSize="11" TextColor="Black" FontAttributes="Bold"/>
+                    <Border Stroke="#E0E0E0" StrokeShape="RoundRectangle 10" Padding="0" BackgroundColor="#737274">
+                        <Picker x:Name="TypePicker" Title="Plan select" TextColor="GreenYellow" TitleColor="#888" HeightRequest="45" Margin="10,0">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>DEMO - 7 Days Free</x:String>
+                                    <x:String>1M - 1 Month</x:String>
+                                    <x:String>6M - 6 Months</x:String>
+                                    <x:String>1Y - 1 Year</x:String>
+                                    <x:String>2Y - 2 Years</x:String>
+                                    <x:String>3Y - 3 Years - Lifetime</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+
+                    <Border BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 10" HeightRequest="48">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGenerateClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="🔑 GENERATE KEY + SEND OTP" FontSize="13" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+
+                    <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="14" IsVisible="False" x:Name="ResultBorder">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="✅ Key Generated!" FontSize="10" TextColor="#10B981" FontAttributes="Bold"/>
+                            <Label x:Name="GeneratedKeyLabel" Text="" FontSize="13" FontAttributes="Bold" TextColor="#D4AF37" />
+                            <Label x:Name="ExpiryInfoLabel" Text="" FontSize="9" TextColor="White"/>
+                            <Label x:Name="MobileInfoLabel" Text="" FontSize="9" TextColor="#FF6B00" FontAttributes="Bold"/>
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,8,0,0">
+                                <Border BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="10">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCopyClicked"/>
+                                    </Border.GestureRecognizers>
+                                    <Label Text="📋 Copy" FontSize="10" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                                </Border>
+                                <Border Grid.Column="1" BackgroundColor="#25D366" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="10">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnShareClicked"/>
+                                    </Border.GestureRecognizers>
+                                    <Label Text="📤 WhatsApp OTP" FontSize="10" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📜 Recent Generated Keys" FontSize="11" TextColor="Black" FontAttributes="Bold"/>
+                    <CollectionView x:Name="HistoryCollection" HeightRequest="250">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Stroke="#F0F0F0" StrokeShape="RoundRectangle 10" Padding="10" Margin="0,4">
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding Party}" FontSize="10" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding Mobile}" FontSize="9" TextColor="#FF6B00" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Key}" FontSize="9" TextColor="#FF6B00"/>
+                                        <Label Text="{Binding Info}" FontSize="8" TextColor="#666"/>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

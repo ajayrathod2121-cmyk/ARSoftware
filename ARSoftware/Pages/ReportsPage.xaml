@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.ReportsPage" Title="Reports" BackgroundColor="#F8F8F7" Shell.NavBarIsVisible="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" BackgroundColor="#0A0A0A" StrokeThickness="0" HeightRequest="52" Padding="0">
+            <Grid ColumnDefinitions="Auto,*,Auto" Padding="14,0">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                    <Border BackgroundColor="#1A1A1A" StrokeThickness="0" StrokeShape="RoundRectangle 8" WidthRequest="32" HeightRequest="32">
+                        <Label Text="R" FontAttributes="Bold" TextColor="#FF6B00" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Spacing="0">
+                        <Label Text="Reports - પાર્ટી વાઇસ" FontAttributes="Bold" TextColor="White" FontSize="14" />
+                        <Label Text="Party Wise Stock | Pending" FontSize="9" TextColor="#AAAAAA" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <Border Grid.Column="2" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12,6" VerticalOptions="Center">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAllReport" />
+                    </Border.GestureRecognizers>
+                    <Label Text="Full Report" FontSize="10" FontAttributes="Bold" TextColor="White" />
+                </Border>
+            </Grid>
+        </Border>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="12" Spacing="12">
+                <!-- TOTAL SUMMARY -->
+                <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📊 કુલ સ્ટોક - Total Stock" FontSize="12" FontAttributes="Bold" TextColor="#FF6B00" />
+                        <Label x:Name="StockSummaryLabel" Text="Total: 0 | Delivered: 0 | Pending: 0" FontSize="11" FontAttributes="Bold" TextColor="White" />
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                            <Border BackgroundColor="#1A1A1A" Stroke="#333" StrokeShape="RoundRectangle 10" Padding="8">
+                                <VerticalStackLayout>
+                                    <Label Text="કુલ આવક" FontSize="8" TextColor="#999" HorizontalOptions="Center"/>
+                                    <Label x:Name="TotalAavakLabel" Text="0" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="1" BackgroundColor="#0A2A12" Stroke="#10B981" StrokeShape="RoundRectangle 10" Padding="8">
+                                <VerticalStackLayout>
+                                    <Label Text="ડિલિવર થઈ" FontSize="8" TextColor="#10B981" HorizontalOptions="Center"/>
+                                    <Label x:Name="TotalDeliveredLabel" Text="0" FontSize="12" FontAttributes="Bold" TextColor="#10B981" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" BackgroundColor="#2A0A0A" Stroke="#FF3B30" StrokeShape="RoundRectangle 10" Padding="8">
+                                <VerticalStackLayout>
+                                    <Label Text="હવે બાકી" FontSize="8" TextColor="#FF3B30" HorizontalOptions="Center"/>
+                                    <Label x:Name="TotalPendingLabel" Text="0" FontSize="12" FontAttributes="Bold" TextColor="#FF3B30" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- PARTY WISE STOCK - NEW -->
+                <Border BackgroundColor="White" Stroke="#FF6B00" StrokeThickness="1.5" StrokeShape="RoundRectangle 18" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="👥 પાર્ટી વાઇસ સ્ટોક - Party Wise" FontSize="13" FontAttributes="Bold" TextColor="#FF6B00" />
+                            <Border Grid.Column="1" BackgroundColor="#FFF7ED" Stroke="#FF6B00" StrokeShape="RoundRectangle 8" Padding="8,4">
+                                <Label Text="આટલી આવી / ગઈ / બાકી" FontSize="8" FontAttributes="Bold" TextColor="#FF6B00"/>
+                            </Border>
+                        </Grid>
+                        <CollectionView x:Name="PartyWiseStockCollection">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#FFFBF5" Stroke="#FF6B00" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="12" Margin="0,5">
+                                        <VerticalStackLayout Spacing="8">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="{Binding PartyName}" FontSize="13" FontAttributes="Bold" TextColor="#0A0A0A"/>
+                                                <Label Grid.Column="1" Text="{Binding BillsCount, StringFormat='{0} Bills'}" FontSize="9" TextColor="White" BackgroundColor="#0A0A0A" Padding="6,2" />
+                                            </Grid>
+                                            <!-- આટલી આવી, ગઈ, બાકી - પાર્ટી વાઇસ -->
+                                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                                <Border BackgroundColor="White" Stroke="#DDD" StrokeShape="RoundRectangle 10" Padding="8">
+                                                    <VerticalStackLayout Spacing="2">
+                                                        <Label Text="કુલ આવી" FontSize="8" TextColor="#666" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding TotalBags, StringFormat='{0} Bags'}" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding TotalWeight, StringFormat='{0:N0} KG'}" FontSize="8" TextColor="#888" HorizontalOptions="Center"/>
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                                <Border Grid.Column="1" BackgroundColor="#F0FFF4" Stroke="#10B981" StrokeShape="RoundRectangle 10" Padding="8">
+                                                    <VerticalStackLayout Spacing="2">
+                                                        <Label Text="ડિલિવર થઈ" FontSize="8" TextColor="#10B981" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding DeliveredBags, StringFormat='{0} Bags'}" FontSize="11" FontAttributes="Bold" TextColor="#10B981" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding DeliveredWeight, StringFormat='{0:N0} KG'}" FontSize="8" TextColor="#10B981" HorizontalOptions="Center"/>
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                                <Border Grid.Column="2" BackgroundColor="#FFE5E5" Stroke="#FF3B30" StrokeShape="RoundRectangle 10" Padding="8">
+                                                    <VerticalStackLayout Spacing="2">
+                                                        <Label Text="હવે બાકી" FontSize="8" TextColor="#FF3B30" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding PendingBags, StringFormat='{0} Bags'}" FontSize="11" FontAttributes="Bold" TextColor="#FF3B30" HorizontalOptions="Center"/>
+                                                        <Label Text="{Binding PendingWeight, StringFormat='{0:N0} KG'}" FontSize="8" TextColor="#FF3B30" HorizontalOptions="Center"/>
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                            </Grid>
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="{Binding LastBillInfo}" FontSize="9" TextColor="#666" VerticalOptions="Center"/>
+                                                <Label Grid.Column="1" Text="{Binding PendingAmount, StringFormat='બાકી Rs {0:N0}'}" FontSize="10" FontAttributes="Bold" TextColor="#FF3B30"/>
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- BILL WISE DETAIL -->
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 18" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="📦 Bill Wise Detail - બિલ વાર" FontSize="12" FontAttributes="Bold" TextColor="#0A0A0A" />
+                            <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10,6">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPrintStockReport" />
+                                </Border.GestureRecognizers>
+                                <Label Text="Print PDF" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                            </Border>
+                        </Grid>
+                        <CollectionView x:Name="StockDetailsCollection" HeightRequest="180">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#F8F8F7" Stroke="#00000004" StrokeShape="RoundRectangle 10" Padding="10" Margin="0,3">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="{Binding PartyName}" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                                <Label Grid.Column="1" Text="{Binding Status}" FontSize="8" FontAttributes="Bold" TextColor="White" BackgroundColor="{Binding StatusColor}" Padding="6,2"/>
+                                            </Grid>
+                                            <Label Text="{Binding BillInfo}" FontSize="9" TextColor="#666"/>
+                                            <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto" ColumnSpacing="6">
+                                                <Label Text="{Binding TotalBags, StringFormat='Total {0}'}" FontSize="9" TextColor="#0A0A0A" FontAttributes="Bold"/>
+                                                <Label Grid.Column="1" Text="{Binding DeliveredBags, StringFormat='Del {0}'}" FontSize="9" TextColor="#10B981"/>
+                                                <Label Grid.Column="2" Text="{Binding PendingBags, StringFormat='Pend {0}'}" FontSize="9" TextColor="#FF3B30" FontAttributes="Bold"/>
+                                                <Label Grid.Column="4" Text="{Binding Amount, StringFormat='Rs {0:N0}'}" FontSize="9" FontAttributes="Bold" TextColor="#FF6B00"/>
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 18" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Payment Report" FontSize="12" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                <Label x:Name="PaymentSummaryLabel" Text="Rs 0" FontSize="10" TextColor="#10B981" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10,6">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPrintPaymentReport" />
+                                </Border.GestureRecognizers>
+                                <Label Text="Print PDF" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                            </Border>
+                        </Grid>
+                        <CollectionView x:Name="PaymentDetailsCollection" HeightRequest="100">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#F8F8F7" Stroke="#00000004" StrokeShape="RoundRectangle 10" Padding="10" Margin="0,3">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <Label Text="{Binding PartyName}" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                            <Label Grid.Column="1" Text="{Binding Amount, StringFormat='Rs {0:N0}'}" FontSize="10" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" Stroke="#00000008" StrokeShape="RoundRectangle 18" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Expense Report" FontSize="12" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                <Label x:Name="ExpenseSummaryLabel" Text="Rs 0" FontSize="10" TextColor="#FF6B00" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10,6">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPrintExpenseReport" />
+                                </Border.GestureRecognizers>
+                                <Label Text="Print PDF" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                            </Border>
+                        </Grid>
+                        <CollectionView x:Name="ExpenseDetailsCollection" HeightRequest="100">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#F8F8F7" Stroke="#00000004" StrokeShape="RoundRectangle 10" Padding="10" Margin="0,3">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <Label Text="{Binding Category}" FontSize="11" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                            <Label Grid.Column="1" Text="{Binding Amount, StringFormat='Rs {0:N0}'}" FontSize="10" FontAttributes="Bold" TextColor="#FF6B00" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Border Grid.Row="2" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 18" Margin="12" Padding="14">
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Premium Full Report PDF" FontSize="11" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Party Wise + Stock + Payment" FontSize="8" TextColor="#AAAAAA" />
+                </VerticalStackLayout>
+                <Border Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="14,8">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPrintFullReport" />
+                    </Border.GestureRecognizers>
+                    <Label Text="Print All PDF" FontSize="10" FontAttributes="Bold" TextColor="White" />
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
+

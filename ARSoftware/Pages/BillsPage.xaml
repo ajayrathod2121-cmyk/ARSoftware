@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ContentPage
+    xmlns:tool="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ARSoftware.Pages.BillsPage" Title="Bills" BackgroundColor="#FAFAFA" Shell.NavBarIsVisible="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🏠 Dashboard" Clicked="OnBackToDashboard" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="12" Spacing="12">
+            <Border BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="16">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Bills - Partial Javak Premium" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="1000 માંથી 500 મોકલો તો 500 નું જ Bill" FontSize="10" TextColor="#FF6B00" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <Border Grid.Column="1" BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,6" VerticalOptions="Center">
+                        <Label Text="Premium" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                    </Border>
+                    <Label x:Name="SummaryLabel" Grid.Row="1" Grid.ColumnSpan="2" Text="Loading..." FontSize="11" TextColor="#AAAAAA" Margin="0,8,0,0" />
+                </Grid>
+            </Border>
+
+            <CollectionView x:Name="BillsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="White" Stroke="#F0F0F0" StrokeShape="RoundRectangle 14" Padding="14" Margin="0,6">
+                            <VerticalStackLayout Spacing="8">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding BillNo}" FontAttributes="Bold" FontSize="14" TextColor="#FF6B00" />
+                                    <Border Grid.Column="1" BackgroundColor="#0A0A0A" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="8,3">
+                                        <Label Text="{Binding Status}" FontSize="10" FontAttributes="Bold" TextColor="White" />
+                                    </Border>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding PartyName}" FontSize="14" FontAttributes="Bold" TextColor="#0A0A0A" />
+                                    <Label Grid.Column="1" Text="{Binding TotalAmount, StringFormat='Rs {0:N0}'}" FontSize="13" FontAttributes="Bold" TextColor="#10B981" />
+                                </Grid>
+
+                                <Label Text="{Binding ItemName}" FontSize="11" TextColor="#666" />
+
+                                <!-- FIXED: Total / Delivered / Pending Detail -->
+                                <Border BackgroundColor="#FFF7ED" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="10">
+                                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto">
+                                        <Label Text="Total Bags" FontSize="9" TextColor="#999" HorizontalOptions="Center" />
+                                        <Label Grid.Column="1" Text="Delivered" FontSize="9" TextColor="#10B981" FontAttributes="Bold" HorizontalOptions="Center" />
+                                        <Label Grid.Column="2" Text="Pending" FontSize="9" TextColor="#FF3B30" FontAttributes="Bold" HorizontalOptions="Center" />
+                                        <Label Grid.Row="1" Text="{Binding Bags}" FontSize="14" FontAttributes="Bold" TextColor="#0A0A0A" HorizontalOptions="Center" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding DeliveredBags}" FontSize="14" FontAttributes="Bold" TextColor="#10B981" HorizontalOptions="Center" />
+                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding PendingBags}" FontSize="14" FontAttributes="Bold" TextColor="#FF3B30" HorizontalOptions="Center" />
+                                    </Grid>
+                                </Border>
+
+                                <Label Text="{Binding VehicleNo, StringFormat='Vehicle: {0}'}" FontSize="10" TextColor="#888" />
+
+                                <!-- FIXED: 4 Buttons - Javak + Print + Edit + Delete -->
+                                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="6" Margin="0,4,0,0">
+                                    <Button Grid.Column="0" Text="🚚 Javak" FontSize="10" FontAttributes="Bold" BackgroundColor="#10B981" TextColor="White" CornerRadius="8" HeightRequest="36" Clicked="OnDeliverPartialClicked" />
+                                    <Button Grid.Column="1" Text="🖨 Print" FontSize="10" BackgroundColor="#0A0A0A" TextColor="White" CornerRadius="8" HeightRequest="36" Clicked="OnPrintClicked" />
+                                    <Button Grid.Column="2" Text="✏ Edit" FontSize="10" BackgroundColor="#FFF7ED" TextColor="#FF6B00" CornerRadius="8" HeightRequest="36" Clicked="OnEditClicked" />
+                                    <Button Grid.Column="3" Text="🗑 Del" FontSize="10" BackgroundColor="#FFE5E5" TextColor="#FF3B30" CornerRadius="8" HeightRequest="36" Clicked="OnDeleteClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

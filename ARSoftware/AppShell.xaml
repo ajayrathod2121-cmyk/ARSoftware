@@ -1,0 +1,67 @@
+﻿<Shell
+    x:Class="ARSoftware.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ARSoftware"
+    xmlns:pages="clr-namespace:ARSoftware.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBackgroundColor="#0A0A0A"
+    Shell.FlyoutWidth="300">
+
+    <Shell.FlyoutHeader>
+        <Border BackgroundColor="#0A0A0A" StrokeThickness="0" Padding="0">
+            <VerticalStackLayout Padding="20,20,20,12" Spacing="0">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <Image Source="ar_logo.jpg" HeightRequest="56" WidthRequest="56" Aspect="AspectFit" VerticalOptions="Center"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="AR TRADING" FontSize="16" FontAttributes="Bold" TextColor="#D4AF37" />
+                        <HorizontalStackLayout Spacing="6">
+                            <Border BackgroundColor="#FF6B00" StrokeThickness="0" StrokeShape="RoundRectangle 4" Padding="6,2" VerticalOptions="Center">
+                                <Label Text="Bhavnagr" FontSize="9" FontAttributes="Bold" TextColor="White" />
+                            </Border>
+                            <Label Text="v2.4.7 LIVE" FontSize="8" FontAttributes="Bold" TextColor="#10B981" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label Text="Jobwork Premium" FontSize="8" TextColor="#AAAAAA" />
+                    </VerticalStackLayout>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#1A1A1A" Margin="0,16,0,0" />
+                <!-- ✅ NEW: Dashboard Button -->
+                <Button Text="🏠 Dashboard પર જાઓ" BackgroundColor="#FF6B00" TextColor="White" FontAttributes="Bold" CornerRadius="8" Margin="0,12,0,0" HeightRequest="40" Clicked="OnDashboardClicked" />
+            </VerticalStackLayout>
+        </Border>
+    </Shell.FlyoutHeader>
+
+    <ShellContent Title="Login" Route="LoginPage" ContentTemplate="{DataTemplate pages:LoginPage}" FlyoutItemIsVisible="False" />
+    <ShellContent Title="Forgot" Route="ForgotPasswordPage" ContentTemplate="{DataTemplate pages:ForgotPasswordPage}" FlyoutItemIsVisible="False" />
+    <ShellContent Title="Deleted History" Route="DeletedHistoryPage" ContentTemplate="{DataTemplate pages:DeletedHistoryPage}" FlyoutItemIsVisible="False" />
+    <ShellContent Title="License" Route="LicensePage" ContentTemplate="{DataTemplate pages:LicensePage}" FlyoutItemIsVisible="False" />
+    <ShellContent Title="Key Generator" Route="AdminKeyGeneratorPage" ContentTemplate="{DataTemplate pages:AdminKeyGeneratorPage}" FlyoutItemIsVisible="False" />
+
+    <FlyoutItem Title="Home Dashboard" Route="Main">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Jobwork Entry Avak" Route="JobworkEntry">
+        <ShellContent ContentTemplate="{DataTemplate pages:JobworkEntryPage}" Route="JobworkEntryPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Javak Delivery Javak" Route="JavakEntry">
+        <ShellContent ContentTemplate="{DataTemplate pages:JavakEntryPage}" Route="JavakEntryPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Bill" Route="Bills">
+        <ShellContent ContentTemplate="{DataTemplate pages:BillsPage}" Route="BillsPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Party Party" Route="PartyMaster">
+        <ShellContent ContentTemplate="{DataTemplate pages:PartyMasterPage}" Route="PartyMasterPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Payment Payment" Route="Payment">
+        <ShellContent ContentTemplate="{DataTemplate pages:PaymentPage}" Route="PaymentPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Expense Kharch" Route="Expense">
+        <ShellContent ContentTemplate="{DataTemplate pages:ExpensePage}" Route="ExpensePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Reports Report" Route="Reports">
+        <ShellContent ContentTemplate="{DataTemplate pages:ReportsPage}" Route="ReportsPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Setting Setting" Route="Settings">
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" Route="SettingsPage" />
+    </FlyoutItem>
+</Shell>

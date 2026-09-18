@@ -1,0 +1,157 @@
+is_global = true
+build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
+build_property._MvvmToolkitIsUsingWindowsRuntimePack = true
+build_property.CsWinRTComponent = 
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotWarningLevel = 
+build_property.CsWinRTAotWarningLevel = 
+build_property.TargetFramework = net8.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.19041.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ARSoftware
+build_property.ProjectDir = D:\ARSoftware\ARSoftware\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTAotExportsEnabled = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptIn = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptOut = 
+build_property.CsWinRTCcwLookupTableGeneratorEnabled = true
+build_property.CsWinRTMergeReferencedActivationFactories = 
+
+[D:/ARSoftware/ARSoftware/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[D:/ARSoftware/ARSoftware/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[D:/ARSoftware/ARSoftware/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/AdminKeyGeneratorPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.AdminKeyGeneratorPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\AdminKeyGeneratorPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\AdminKeyGeneratorPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/BillPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.BillPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\BillPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\BillPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/BillsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.BillsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\BillsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\BillsPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/ChangePasswordPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.ChangePasswordPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ChangePasswordPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ChangePasswordPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/DeletedHistoryPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.DeletedHistoryPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\DeletedHistoryPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\DeletedHistoryPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/ExpensePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.ExpensePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ExpensePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ExpensePage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/ForgotPasswordPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.ForgotPasswordPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ForgotPasswordPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ForgotPasswordPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/ItemMasterPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.ItemMasterPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ItemMasterPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ItemMasterPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/JavakEntryPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.JavakEntryPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\JavakEntryPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\JavakEntryPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/JobworkEntryPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.JobworkEntryPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\JobworkEntryPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\JobworkEntryPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/LicensePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.LicensePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\LicensePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\LicensePage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\LoginPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/PartyMasterPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.PartyMasterPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\PartyMasterPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\PartyMasterPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/PartyReportPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.PartyReportPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\PartyReportPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\PartyReportPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/PaymentPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.PaymentPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\PaymentPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\PaymentPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/ReportsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.ReportsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ReportsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ReportsPage.xaml
+
+[D:/ARSoftware/ARSoftware/Pages/SettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Pages.SettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\SettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\SettingsPage.xaml
+
+[D:/ARSoftware/ARSoftware/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[D:/ARSoftware/ARSoftware/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ARSoftware.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
